@@ -3,7 +3,12 @@ from flask import Flask, request, jsonify
 from privy import PrivyAPI
 from dotenv import load_dotenv
 import os
+<<<<<<< Updated upstream
 from hash import hashing, get_file_date
+=======
+from flask_cors import CORS
+import hashlib  # for example hash function
+>>>>>>> Stashed changes
 
 load_dotenv()
 
@@ -12,34 +17,39 @@ PRIVY_CLIENT_ID = os.getenv("PRIVY_CLIENT_ID")
 PRIVY_SECRET = os.getenv("PRIVY_SECRET")
 
 app = Flask(__name__)
+CORS(app)  # allow cross-origin requests
 
-# Initialize Privy client with your app credentials
+# Initialize Privy client
 client = PrivyAPI(
     app_id=PRIVY_APP_ID,
     app_secret=PRIVY_SECRET
 )
 
-# Generate a single server-side authorization key
-#signer = client.wallets.generate_user_signer(user_jwt=None)  # no JWT needed
-#client.update_authorization_key(signer.decrypted_authorization_key)
-
-@app.route("/verify-image", methods=["POST"])
-def verify_image():
-    data = request.json
-    image_url = data.get("image_url")  # for example
-
-    # Example: Call Privy to verify or analyze image
-    result = client.verifications.create(
-        image_url=image_url,
-        verification_type="image"  # adjust as needed
-    )
-
-    return jsonify(result)
-
-
+# Example hello route
 @app.route("/hello", methods=["GET"])
 def hello():
     return jsonify({"message": "hello world"})
 
+
+# Fixed: define this route BEFORE app.run()
+@app.route("/verify-image", methods=["POST"])
+def verify_image():
+    if 'photo' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    photo = request.files['photo']
+    isJailBroken = request.form.get('is_jailbroken', 'false') == 'true'
+    #is_emulated = request.form.get('is_emulated', 'false') == 'true'
+    # Example hash function using hashlib
+    file_bytes = photo.read()
+    file_hash = hashlib.sha256(file_bytes).hexdigest()
+
+    return jsonify({
+        "message": "File received successfully",
+        "hash": file_hash,
+        "is_jailbroken": isJailBroken
+    })
+
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000,debug = True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
