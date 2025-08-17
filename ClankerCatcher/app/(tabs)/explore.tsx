@@ -83,21 +83,6 @@ const sendImageForVerification = async (imageUri: string) => {
         <ThemedText type="title">Explore Page</ThemedText>
       </ThemedView>
 
-      {/* Add the button and message display here */}
-      <View style={styles.buttonContainer}>
-        <Button title="Call Flask /hello" onPress={testHello} />
-        {message ? (
-          <ThemedText style={styles.messageText}>Response: {message}</ThemedText>
-        ) : null}
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <Button title="Call Flask /sendImageForVerification" onPress={sendImageForVerification} />
-        {message ? (
-          <ThemedText style={styles.messageText}>Response: {message}</ThemedText>
-        ) : null}
-      </View>
-
       <ThemedText>This app includes example code to help you get started.</ThemedText>
 
       {/* Existing collapsibles */}
