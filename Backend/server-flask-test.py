@@ -55,7 +55,7 @@ def verify_image():
     photo = request.files['photo']
     file_bytes = photo.read()
     file_hash = hashlib.sha256(file_bytes).hexdigest()
-    file_hash = "5041022a4eab79829c6ca6d1f41064bc9292250b29ac7f4418b2ab3829ba47af" # for testing
+    #file_hash = "5041022a4eab79829c6ca6d1f41064bc9292250b29ac7f4418b2ab3829ba47af" # for testing
     # --- Use Privy to verify the photo here ---
     # Example placeholder: always verified for now
     is_verified = True  # Replace with actual Privy verification logic if needed

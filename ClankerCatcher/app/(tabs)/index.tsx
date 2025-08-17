@@ -44,7 +44,7 @@ export default function App() {
         type,
       } as any);
 
-      const response = await fetch('http://10.1.11.235:5008/verify-image', {
+      const response = await fetch('http://10.1.8.13:5008/verify-image', {
         method: 'POST',
         body: formData,
       });
