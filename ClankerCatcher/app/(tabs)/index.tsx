@@ -46,7 +46,7 @@ export default function App() {
         type,
       } as any); // Use 'any' for React Native
 
-      formData.append('is_jailbroken', JSON.stringify(isJailBroken));
+      //formData.append('is_jailbroken', JSON.stringify(isJailBroken));
       //formData.append('is_emulated', JSON.stringify(isEmulated));
       const response = await fetch('http://10.1.8.13:5000/verify-image', {
         method: 'POST',

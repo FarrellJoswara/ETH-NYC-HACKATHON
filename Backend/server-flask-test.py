@@ -3,12 +3,8 @@ from flask import Flask, request, jsonify
 from privy import PrivyAPI
 from dotenv import load_dotenv
 import os
-<<<<<<< Updated upstream
-from hash import hashing, get_file_date
-=======
 from flask_cors import CORS
 import hashlib  # for example hash function
->>>>>>> Stashed changes
 
 load_dotenv()
 
@@ -38,7 +34,7 @@ def verify_image():
         return jsonify({"error": "No file uploaded"}), 400
 
     photo = request.files['photo']
-    isJailBroken = request.form.get('is_jailbroken', 'false') == 'true'
+    #isJailBroken = request.form.get('is_jailbroken', 'false') == 'true'
     #is_emulated = request.form.get('is_emulated', 'false') == 'true'
     # Example hash function using hashlib
     file_bytes = photo.read()
@@ -46,8 +42,7 @@ def verify_image():
 
     return jsonify({
         "message": "File received successfully",
-        "hash": file_hash,
-        "is_jailbroken": isJailBroken
+        "hash": file_hash
     })
 
 
