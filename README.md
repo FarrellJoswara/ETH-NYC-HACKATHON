@@ -14,6 +14,6 @@ Mobile: React Native + Expo, Expo Camera
 
 Backend: Python3, Flask, Flask-CORS, python-dotenv
 
-Blockchain: Solidity smart contract on Flow testnet, Cadence
+Blockchain: Solidity smart contract on Flow testnet
 
 Demo: HTML/CSS/JS simulated social feed
