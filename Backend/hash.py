@@ -1,4 +1,4 @@
-#run python app/hash.py
+#run python hash.py
 
 from PIL import Image, ExifTags
 import imagehash
@@ -9,19 +9,19 @@ import os
 from datetime import datetime
 import pytz
 
-# Load your image
-image = Image.open('./assets/images/pic.jpg')
-image2 = Image.open('./assets/images/PhotoID2.png')
-# Generate the perceptual hash
-hash_value = imagehash.phash(image, hash_size=256)
-hash_value2 = imagehash.phash(image2, hash_size=256)
-# Print the hash value
-#print("Perceptual Hash:", hash_value)
-#print("Perceptual Hash:", hash_value2)
-#print(hash_value - hash_value2)
+def hashing(path):
+    # Load your image
+    image = Image.open(path)
+    # Generate the perceptual hash
+    hash_value = imagehash.phash(image, hash_size=256)
+    # Print the hash value
+    #print("Perceptual Hash:", hash_value)
+    #print("Perceptual Hash:", hash_value2)
+    #print(hash_value - hash_value2)
 
-perc = ((hash_value - hash_value2)/len(hash_value))*100
-print(100-perc)
+    #perc = ((hash_value - hash_value2)/len(hash_value))*100
+    #print(100-perc)
+    return hash_value
 
 #METADATAAAAAAAA
 
