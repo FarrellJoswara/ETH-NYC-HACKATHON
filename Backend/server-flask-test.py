@@ -15,12 +15,12 @@ app = Flask(__name__)
 # Initialize Privy client with your app credentials
 client = PrivyAPI(
     app_id=PRIVY_APP_ID,
-    app_secret=PRIVY_CLIENT_ID
+    app_secret=PRIVY_SECRET
 )
 
 # Generate a single server-side authorization key
-signer = client.wallets.generate_user_signer(user_jwt=None)  # no JWT needed
-client.update_authorization_key(signer.decrypted_authorization_key)
+#signer = client.wallets.generate_user_signer(user_jwt=None)  # no JWT needed
+#client.update_authorization_key(signer.decrypted_authorization_key)
 
 @app.route("/verify-image", methods=["POST"])
 def verify_image():
@@ -41,8 +41,4 @@ def hello():
     return jsonify({"message": "hello world"})
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000,debug = True)

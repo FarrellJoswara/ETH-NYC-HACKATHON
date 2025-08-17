@@ -10,7 +10,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/phasher', methods=['POST'])
+@app.route('/', methods=['POST'])
 def phash_image():
     if 'image' not in request.json:
         return jsonify({'error': 'No image provided'}), 400
