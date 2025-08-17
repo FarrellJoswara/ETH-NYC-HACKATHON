@@ -1,3 +1,7 @@
 {
+<<<<<<< Updated upstream
     "liveServer.settings.port": 5501
+=======
+    "cadence.flowCommand": "flow"
+>>>>>>> Stashed changes
 }
